@@ -1,0 +1,50 @@
+:root {
+    --bg: #ffffff;
+    --text: #111827;
+    --card: #f9fafb;
+    --border: #e5e7eb;
+}
+
+body.dark {
+    --bg: #0f172a;
+    --text: #e5e7eb;
+    --card: #1e293b;
+    --border: #334155;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 0.75rem;
+}
+
+table {
+    background: var(--card);
+    color: var(--text);
+}
+
+input, select, textarea {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.dropdown-panel,
+.modal-panel {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+/* Overrides for common Tailwind utility uses */
+.bg-white { background-color: var(--card) !important; }
+.bg-slate-50 { background-color: var(--bg) !important; }
+.text-slate-900, .text-black { color: var(--text) !important; }
+.text-slate-800, .text-slate-700, .text-slate-600 { color: var(--text) !important; opacity: 0.85; }
+.border-slate-200, .border-slate-100 { border-color: var(--border) !important; }
