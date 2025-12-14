@@ -101,10 +101,9 @@
                                       class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                                       placeholder="Leave a comment about your experience..."></textarea>
                         </div>
-                        <button type="submit" 
-                                class="w-full px-4 py-2.5 border border-slate-300 text-slate-700 text-sm font-medium rounded-lg hover:bg-slate-50 focus:ring-4 focus:ring-blue-100 transition duration-200">
-                            Submit rating
-                        </button>
+                        <input type="submit" 
+                                value="Submit rating"
+                                class="w-full px-4 py-2.5 border border-slate-300 text-slate-700 text-sm font-medium rounded-lg hover:bg-slate-50 focus:ring-4 focus:ring-blue-100 transition duration-200 cursor-pointer">
                     </form>
                 </div>
             </div>

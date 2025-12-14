@@ -6,11 +6,11 @@
             <h1 class="text-2xl sm:text-3xl font-bold text-slate-900">Facility Management</h1>
             <p class="text-slate-600 mt-1">Manage all facilities and their settings</p>
         </div>
-        <button data-modal-target="createFacility" data-modal-toggle="createFacility" 
-                class="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-medium rounded-lg hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 transition duration-200">
-            <span>➕</span>
+        <div role="button" tabindex="0" data-modal-target="createFacility" data-modal-toggle="createFacility" 
+                class="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-medium rounded-lg hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 transition duration-200 cursor-pointer">
+            <span>+</span>
             <span>Add facility</span>
-        </button>
+        </div>
     </div>
 
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
@@ -78,18 +78,17 @@
                             </td>
                             <td class="px-6 py-4">
                                 <div class="flex justify-end gap-2">
-                                    <button data-modal-target="editFacility{{ $facility->id }}" data-modal-toggle="editFacility{{ $facility->id }}" 
-                                            class="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition duration-200">
+                                    <div role="button" tabindex="0" data-modal-target="editFacility{{ $facility->id }}" data-modal-toggle="editFacility{{ $facility->id }}" 
+                                            class="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-lg transition duration-200 cursor-pointer">
                                         Edit
-                                    </button>
+                                    </div>
                                     <form method="POST" action="{{ route('admin.facilities.destroy', $facility) }}" class="inline" 
                                           onsubmit="return confirm('Are you sure you want to disable this facility?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" 
-                                                class="px-4 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition duration-200">
-                                            Disable
-                                        </button>
+                                        <input type="submit" 
+                                                value="Disable"
+                                                class="px-4 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition duration-200 cursor-pointer">
                                     </form>
                                 </div>
                             </td>
@@ -151,10 +150,9 @@
                                         Active facility
                                     </label>
                                 </div>
-                                <button type="submit" 
-                                        class="w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5 text-center transition duration-200">
-                                    Save Changes
-                                </button>
+                                <input type="submit" 
+                                        value="Save Changes"
+                                        class="w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5 text-center transition duration-200 cursor-pointer">
                             </form>
                         </x-modal>
                     @empty
@@ -247,10 +245,9 @@
                     Activate facility immediately
                 </label>
             </div>
-            <button type="submit"
-                    class="w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5 text-center transition duration-200">
-                Create Facility
-            </button>
+            <input type="submit"
+                    value="Create Facility"
+                    class="w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5 text-center transition duration-200 cursor-pointer">
         </form>
     </x-modal>
 @endsection

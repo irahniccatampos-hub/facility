@@ -8,14 +8,14 @@
                 <h3 class="text-xl font-bold text-slate-900">
                     {{ $title }}
                 </h3>
-                <button type="button" 
-                        class="text-slate-400 hover:text-slate-900 rounded-lg text-sm p-2 hover:bg-slate-100 transition duration-200"
+                <div role="button" tabindex="0"
+                        class="text-slate-400 hover:text-slate-900 rounded-lg text-sm p-2 hover:bg-slate-100 transition duration-200 cursor-pointer"
                         data-modal-hide="{{ $id }}">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                     <span class="sr-only">Close modal</span>
-                </button>
+                </div>
             </div>
             <div class="p-6">
                 {{ $slot }}

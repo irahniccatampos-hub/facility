@@ -52,10 +52,9 @@
                        class="flex-1 bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3.5" 
                        placeholder="Type your question about facilities or reservations..." 
                        required>
-                <button type="submit" 
-                        class="px-5 py-3.5 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 transition duration-200">
-                    Send
-                </button>
+                <input type="submit"
+                       value="Send"
+                       class="px-5 py-3.5 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 transition duration-200 cursor-pointer">
             </div>
             <div class="mt-3 text-xs text-slate-500 flex items-center justify-center gap-4">
                 <span class="flex items-center gap-1">
@@ -79,6 +78,7 @@
         const form = document.getElementById('chat-form');
         const input = document.getElementById('chat-input');
         const log = document.getElementById('chat-log');
+        const submitControl = form.querySelector('input[type=\"submit\"]');
 
         const csrf = form.querySelector('input[name="_token"]').value;
 
@@ -119,7 +119,9 @@
             appendMessage(message, 'user');
             input.value = '';
             input.disabled = true;
-            form.querySelector('button').disabled = true;
+            if (submitControl) {
+                submitControl.disabled = true;
+            }
 
             try {
                 const response = await fetch('{{ route('user.chat.message') }}', {
@@ -142,7 +144,9 @@
                 appendMessage('Unable to connect to IrahKun. Please check your connection and try again.', 'bot');
             } finally {
                 input.disabled = false;
-                form.querySelector('button').disabled = false;
+                if (submitControl) {
+                    submitControl.disabled = false;
+                }
                 input.focus();
             }
         });

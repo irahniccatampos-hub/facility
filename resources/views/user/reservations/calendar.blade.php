@@ -11,10 +11,10 @@
                class="inline-flex items-center px-4 py-2.5 border border-slate-300 text-sm font-medium rounded-lg text-slate-700 bg-white hover:bg-slate-50 focus:ring-4 focus:ring-blue-100 transition duration-200">
                 🏢 Browse facilities
             </a>
-            <button data-modal-target="createReservation" data-modal-toggle="createReservation" 
-                    class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-medium rounded-lg hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 transition duration-200">
+            <div role="button" tabindex="0" data-modal-target="createReservation" data-modal-toggle="createReservation" 
+                    class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-medium rounded-lg hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 transition duration-200 cursor-pointer">
                 📅 New reservation
-            </button>
+            </div>
         </div>
     </div>
 

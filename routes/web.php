@@ -14,7 +14,6 @@ use App\Http\Controllers\User\ChatbotController;
 use App\Http\Controllers\User\MapController;
 use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\ReservationController;
-use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -96,10 +95,4 @@ Route::middleware(['auth'])->group(function () {
         Route::get('analytics/peak-hours', [AnalyticsController::class, 'peakHours'])
             ->name('analytics.peak');
     });
-});
-
-// Shared notifications endpoints for both user and admin contexts
-Route::middleware('auth')->group(function () {
-    Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
-    Route::post('notifications/read', [NotificationController::class, 'markRead'])->name('notifications.read');
 });

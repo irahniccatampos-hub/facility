@@ -32,10 +32,9 @@
                         </div>
                         <a href="{{ route('register') }}" class="text-sm font-medium text-blue-600 hover:text-blue-700">Create account</a>
                     </div>
-                    <button type="submit" 
-                            class="w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5 text-center transition duration-200">
-                        Sign In
-                    </button>
+                    <input type="submit"
+                           value="Sign In"
+                           class="w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5 text-center transition duration-200">
                 </form>
                 
                 

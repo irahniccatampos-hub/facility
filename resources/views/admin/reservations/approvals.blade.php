@@ -52,25 +52,22 @@
                                 <div class="flex justify-end gap-2">
                                     <form method="POST" action="{{ route('admin.reservations.approve', $reservation->id) }}" class="inline">
                                         @csrf
-                                        <button type="submit" 
-                                                class="px-4 py-2 text-xs font-medium text-white bg-emerald-500 hover:bg-emerald-600 rounded-lg focus:ring-4 focus:ring-emerald-200 transition duration-200">
-                                            ✓ Approve
-                                        </button>
+                                        <input type="submit"
+                                               value="Approve"
+                                               class="px-4 py-2 text-xs font-medium text-white bg-emerald-500 hover:bg-emerald-600 rounded-lg focus:ring-4 focus:ring-emerald-200 transition duration-200 cursor-pointer">
                                     </form>
                                     <form method="POST" action="{{ route('admin.reservations.reject', $reservation->id) }}" class="inline">
                                         @csrf
                                         <input type="hidden" name="reason" value="Rejected by admin">
-                                        <button type="submit" 
-                                                class="px-4 py-2 text-xs font-medium text-white bg-amber-500 hover:bg-amber-600 rounded-lg focus:ring-4 focus:ring-amber-200 transition duration-200">
-                                            ✗ Reject
-                                        </button>
+                                        <input type="submit"
+                                               value="Reject"
+                                               class="px-4 py-2 text-xs font-medium text-white bg-amber-500 hover:bg-amber-600 rounded-lg focus:ring-4 focus:ring-amber-200 transition duration-200 cursor-pointer">
                                     </form>
                                     <form method="POST" action="{{ route('admin.reservations.cancel', $reservation->id) }}" class="inline">
                                         @csrf
-                                        <button type="submit" 
-                                                class="px-4 py-2 text-xs font-medium text-white bg-red-500 hover:bg-red-600 rounded-lg focus:ring-4 focus:ring-red-200 transition duration-200">
-                                            Cancel
-                                        </button>
+                                        <input type="submit"
+                                               value="Cancel"
+                                               class="px-4 py-2 text-xs font-medium text-white bg-red-500 hover:bg-red-600 rounded-lg focus:ring-4 focus:ring-red-200 transition duration-200 cursor-pointer">
                                     </form>
                                 </div>
                             </td>

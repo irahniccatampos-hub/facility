@@ -20,8 +20,6 @@ class DashboardController extends Controller
             ->limit(5)
             ->get();
 
-        $notifications = auth()->user()?->notifications()->latest()->limit(5)->get() ?? collect();
-
-        return view('admin.dashboard', compact('pending', 'approved', 'facilities', 'upcoming', 'notifications'));
+        return view('admin.dashboard', compact('pending', 'approved', 'facilities', 'upcoming'));
     }
 }

@@ -5,12 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Reservation;
 use App\Services\ReservationConflictService;
-use App\Notifications\ReservationStatusChangedNotification;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\View\View;
 
 class ReservationApprovalController extends Controller
@@ -53,7 +51,6 @@ class ReservationApprovalController extends Controller
         }
 
         $reservation->update(['status' => Reservation::STATUS_APPROVED]);
-        Notification::send($reservation->user, new ReservationStatusChangedNotification($reservation));
 
         return back()->with('status', 'Reservation approved.');
     }
@@ -71,7 +68,6 @@ class ReservationApprovalController extends Controller
             'status' => Reservation::STATUS_REJECTED,
             'reason' => $request->input('reason'),
         ]);
-        Notification::send($reservation->user, new ReservationStatusChangedNotification($reservation));
 
         return back()->with('status', 'Reservation rejected.');
     }
@@ -82,7 +78,6 @@ class ReservationApprovalController extends Controller
         $this->authorize('cancel', $reservation);
 
         $reservation->update(['status' => Reservation::STATUS_CANCELLED]);
-        Notification::send($reservation->user, new ReservationStatusChangedNotification($reservation));
 
         return back()->with('status', 'Reservation cancelled.');
     }

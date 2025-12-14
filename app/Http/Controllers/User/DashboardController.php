@@ -24,7 +24,6 @@ class DashboardController extends Controller
             'pending' => $pending,
             'approved' => $approved,
             'upcoming' => $upcoming,
-            'notifications' => $user->notifications()->latest()->limit(5)->get(),
         ]);
     }
 }

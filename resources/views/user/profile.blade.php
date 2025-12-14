@@ -41,10 +41,9 @@
                            placeholder="https://example.com/avatar.jpg">
                     <p class="mt-1 text-xs text-slate-500">Link to your profile image (optional)</p>
                 </div>
-                <button type="submit"
-                        class="w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5 text-center transition duration-200">
-                    Save Changes
-                </button>
+                <input type="submit"
+                        value="Save Changes"
+                        class="w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5 text-center transition duration-200 cursor-pointer">
             </form>
         </div>
 
@@ -81,10 +80,9 @@
                     <input type="password" name="password_confirmation" required
                            class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3">
                 </div>
-                <button type="submit"
-                        class="w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5 text-center transition duration-200">
-                    Update Password
-                </button>
+                <input type="submit"
+                        value="Update Password"
+                        class="w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5 text-center transition duration-200 cursor-pointer">
             </form>
         </div>
     </div>

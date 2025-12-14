@@ -6,14 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreReservationRequest;
 use App\Models\Facility;
 use App\Models\Reservation;
-use App\Models\User;
-use App\Notifications\ReservationSubmittedNotification;
 use App\Services\ReservationConflictService;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\View\View;
 
 class ReservationController extends Controller
@@ -69,7 +66,7 @@ class ReservationController extends Controller
             ])->withInput();
         }
 
-        $reservation = Reservation::create([
+        Reservation::create([
             'user_id' => Auth::id(),
             'facility_id' => $facility->id,
             'start_time' => $start,
@@ -77,11 +74,6 @@ class ReservationController extends Controller
             'status' => Reservation::STATUS_PENDING,
             'reason' => $data['reason'] ?? null,
         ]);
-        $reservation->load(['facility', 'user']);
-
-        // Notify admins, avoid duplicates by targeting unread latest
-        $admins = User::where('role', User::ROLE_ADMIN)->get();
-        Notification::send($admins, new ReservationSubmittedNotification($reservation));
 
         return back()->with('status', 'Reservation submitted for approval.');
     }

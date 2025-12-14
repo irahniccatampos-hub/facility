@@ -78,10 +78,9 @@
                     Requires admin approval
                 </div>
             </div>
-            <button type="submit"
-                    class="px-6 py-3 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 transition duration-200">
-                Submit for Approval
-            </button>
+            <input type="submit"
+                    value="Submit for Approval"
+                    class="px-6 py-3 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 transition duration-200 cursor-pointer">
         </div>
     </form>
 </x-modal>

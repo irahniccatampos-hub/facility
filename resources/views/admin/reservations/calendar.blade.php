@@ -61,11 +61,11 @@
                             <div class="bg-white rounded-2xl max-w-md w-full p-6">
                                 <div class="flex items-center justify-between mb-4">
                                     <h3 class="text-lg font-bold text-slate-900">Reservation Details</h3>
-                                    <button onclick="this.closest('.fixed').remove()" class="text-slate-400 hover:text-slate-900">
+                                    <div role="button" tabindex="0" onclick="this.closest('.fixed').remove()" class="text-slate-400 hover:text-slate-900 cursor-pointer">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                         </svg>
-                                    </button>
+                                    </div>
                                 </div>
                                 <div class="space-y-4">
                                     <div>
@@ -84,12 +84,12 @@
                                     </div>
                                     <div class="pt-4 border-t border-slate-100">
                                         <div class="flex gap-2">
-                                            <button class="flex-1 px-4 py-2 text-sm font-medium text-white bg-emerald-600 rounded-lg hover:bg-emerald-700">
+                                            <div role="button" tabindex="0" class="flex-1 px-4 py-2 text-sm font-medium text-white bg-emerald-600 rounded-lg hover:bg-emerald-700 text-center cursor-pointer">
                                                 Approve
-                                            </button>
-                                            <button class="flex-1 px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700">
+                                            </div>
+                                            <div role="button" tabindex="0" class="flex-1 px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 text-center cursor-pointer">
                                                 Reject
-                                            </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

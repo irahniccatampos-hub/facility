@@ -10,12 +10,12 @@
                 <div class="text-xs text-blue-100">Ask about facilities or conflicts</div>
             </div>
         </div>
-        <button type="button" id="irahkun-close" 
-                class="text-white hover:bg-white/20 rounded-full w-8 h-8 flex items-center justify-center transition duration-200">
+        <div role="button" tabindex="0" id="irahkun-close" 
+                class="text-white hover:bg-white/20 rounded-full w-8 h-8 flex items-center justify-center transition duration-200 cursor-pointer">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
-        </button>
+        </div>
     </div>
     
     <div id="irahkun-log" class="p-4 space-y-3 h-80 overflow-y-auto text-sm text-slate-800 bg-slate-50">
@@ -38,12 +38,9 @@
                    class="flex-1 bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-3" 
                    placeholder="Type your question..." 
                    required>
-            <button type="submit" 
-                    class="p-3 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 transition duration-200">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                </svg>
-            </button>
+            <input type="submit"
+                    value="Send"
+                    class="p-3 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300 transition duration-200 cursor-pointer">
         </div>
         <div class="mt-3 text-xs text-slate-500 flex items-center justify-center gap-3">
             <span class="flex items-center gap-1">
@@ -62,10 +59,16 @@
     </form>
 </div>
 
-<button id="irahkun-toggle" type="button" 
-        class="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full shadow-2xl w-16 h-16 flex items-center justify-center text-2xl hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300/50 z-50 transition duration-200 hover:scale-110">
-    💬
-</button>
+<!-- Updated toggle button with chatbot icon -->
+<div id="irahkun-toggle" role="button" tabindex="0"
+        class="fixed bottom-6 right-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full shadow-2xl w-16 h-16 flex items-center justify-center hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:ring-blue-300/50 z-50 transition duration-200 hover:scale-110 cursor-pointer">
+    <!-- Chatbot icon -->
+    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z">
+        </path>
+    </svg>
+</div>
 
 @push('scripts')
 <script>
@@ -76,7 +79,8 @@
         const form = document.getElementById('irahkun-form');
         const input = document.getElementById('irahkun-input');
         const log = document.getElementById('irahkun-log');
-        const csrf = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || form.querySelector('input[name="_token"]').value;
+        const submitControl = form?.querySelector('input[type=\"submit\"]');
+        const csrf = document.querySelector('meta[name=\"csrf-token\"]')?.getAttribute('content') || form.querySelector('input[name=\"_token\"]').value;
 
         const appendMessage = (content, from = 'bot') => {
             const wrapper = document.createElement('div');
@@ -135,7 +139,9 @@
             appendMessage(message, 'user');
             input.value = '';
             input.disabled = true;
-            form.querySelector('button').disabled = true;
+            if (submitControl) {
+                submitControl.disabled = true;
+            }
 
             try {
                 const response = await fetch('{{ route('user.chat.message') }}', {
@@ -155,7 +161,9 @@
                 appendMessage('IrahKun could not respond. Please check your connection and try again.', 'bot');
             } finally {
                 input.disabled = false;
-                form.querySelector('button').disabled = false;
+                if (submitControl) {
+                    submitControl.disabled = false;
+                }
                 input.focus();
             }
         });

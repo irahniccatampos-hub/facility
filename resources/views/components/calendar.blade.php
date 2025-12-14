@@ -30,11 +30,11 @@
                         <div class="bg-white rounded-2xl max-w-md w-full p-6">
                             <div class="flex items-center justify-between mb-4">
                                 <h3 class="text-lg font-bold text-slate-900">Reservation Details</h3>
-                                <button onclick="this.closest('.fixed').remove()" class="text-slate-400 hover:text-slate-900">
+                                <div role="button" tabindex="0" onclick="this.closest('.fixed').remove()" class="text-slate-400 hover:text-slate-900 cursor-pointer">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                     </svg>
-                                </button>
+                                </div>
                             </div>
                             <div class="space-y-3">
                                 <div>
