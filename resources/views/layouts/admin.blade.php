@@ -14,6 +14,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @auth
+        <meta name="user-id" content="{{ auth()->id() }}">
+    @endauth
+   
+    @vite(['resources/js/app.js'])
 </head>
 <body id="app-body" class="min-h-screen">
     <div class="flex">
@@ -44,5 +49,6 @@
     @include('components.chat-float')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     @stack('scripts')
+    
 </body>
 </html>

@@ -4,11 +4,14 @@
             <a href="{{ route('landing') }}" class="text-lg font-bold text-slate-100">Facility Reservation</a>
             <div class="flex items-center gap-4">
                 @auth
-                    <span class="text-sm text-slate-100">{{ auth()->user()->name }}</span>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <input type="submit" value="Logout" class="text-sm text-red-400 hover:text-red-300 cursor-pointer border-0 bg-transparent">
-                    </form>
+                    <div class="flex items-center gap-3">
+                        <span class="text-sm text-slate-100">{{ auth()->user()->name }}</span>
+                        @include('components.notification-bell')
+                        <form method="POST" action="{{ route('logout') }}" class="flex items-center">
+                            @csrf
+                            <input type="submit" value="Logout" class="text-sm text-red-400 hover:text-red-300 cursor-pointer border-0 bg-transparent">
+                        </form>
+                    </div>
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-slate-200 hover:text-white">Login</a>
                     <a href="{{ route('register') }}" class="text-sm text-slate-200 hover:text-white">Register</a>

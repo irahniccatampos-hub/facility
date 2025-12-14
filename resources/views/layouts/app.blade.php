@@ -14,6 +14,11 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @auth
+        <meta name="user-id" content="{{ auth()->id() }}">
+    @endauth
+   
+    @vite(['resources/js/app.js'])
     <style>
         :root {
             --primary-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
@@ -83,5 +88,6 @@
     </script>
     
     @stack('scripts')
+    
 </body>
 </html>

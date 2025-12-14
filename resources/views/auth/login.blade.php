@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{ route('landing') }}" class="inline-block mb-4 text-sm text-slate-600 hover:text-blue-600">
-    ← Back to Home
-</a>
+
     <div class="max-w-md mx-auto">
         <div class="bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden">
             <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-center">

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ReservationApprovalController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\FacilityBrowseController;
 use App\Http\Controllers\User\FacilityRatingController;
@@ -64,6 +65,11 @@ Route::middleware(['auth'])->group(function () {
         Route::put('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
 
     });
+
+    // Notifications
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/read-all', [NotificationController::class, 'readAll'])->name('notifications.readAll');
+    Route::post('/notifications/{id}/read', [NotificationController::class, 'read'])->name('notifications.read');
 
     // Admin Routes
     Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
