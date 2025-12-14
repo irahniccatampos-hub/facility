@@ -4,10 +4,7 @@
             <a href="{{ route('landing') }}" class="text-lg font-bold text-slate-100">Facility Reservation</a>
             <div class="flex items-center gap-4">
                 @auth
-                    <a href="{{ route('user.dashboard') }}" class="text-sm text-slate-200 hover:text-white">Dashboard</a>
-                    @if(auth()->user()->isAdmin())
-                        <a href="{{ route('admin.dashboard') }}" class="text-sm text-slate-200 hover:text-white">Admin</a>
-                    @endif
+                    
                     <div class="flex items-center gap-3">
                         <div class="relative">
                             <button type="button" id="notif-toggle" class="relative text-slate-200 hover:text-white">
@@ -22,10 +19,7 @@
                                 <div id="notif-list" class="max-h-64 overflow-y-auto p-3 space-y-2 text-slate-100"></div>
                             </div>
                         </div>
-                        <button id="theme-toggle" type="button" class="text-sm text-slate-200 hover:text-white border border-slate-700 px-2 py-1 rounded">🌓</button>
-                        @if(auth()->user()->avatar_url)
-                            <img src="{{ asset(auth()->user()->avatar_url) }}" alt="Avatar" class="w-8 h-8 rounded-full object-cover border border-slate-700">
-                        @endif
+                       
                         <span class="text-sm text-slate-100">{{ auth()->user()->name }}</span>
                     </div>
                     <form method="POST" action="{{ route('logout') }}">
@@ -44,21 +38,6 @@
 @push('scripts')
 <script>
     (function() {
-        // Theme toggle with localStorage across layouts
-        const themeToggle = document.getElementById('theme-toggle');
-        const root = document.documentElement;
-        const applyTheme = (theme) => {
-            root.dataset.theme = theme;
-            document.body.dataset.theme = theme;
-            localStorage.setItem('theme', theme);
-        };
-        const initial = localStorage.getItem('theme') || 'dark';
-        applyTheme(initial);
-        themeToggle?.addEventListener('click', () => {
-            const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-            applyTheme(next);
-        });
-
         // Notifications polling and dropdown
         const notifToggle = document.getElementById('notif-toggle');
         const notifPanel = document.getElementById('notif-panel');

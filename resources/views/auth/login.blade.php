@@ -1,26 +1,45 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="max-w-md mx-auto bg-white border border-slate-200 rounded-lg shadow p-6">
-        <h2 class="text-xl font-semibold text-slate-900 mb-4">Login</h2>
-        <form method="POST" action="{{ route('login.store') }}" class="space-y-4">
-            @csrf
-            <div>
-                <label class="block text-sm text-slate-600 mb-1">Email</label>
-                <input type="email" name="email" value="{{ old('email') }}" required class="w-full rounded-lg border-slate-200">
+<a href="{{ route('landing') }}" class="inline-block mb-4 text-sm text-slate-600 hover:text-blue-600">
+    ← Back to Home
+</a>
+    <div class="max-w-md mx-auto">
+        <div class="bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-center">
+                <h2 class="text-2xl font-bold text-white">Welcome Back</h2>
+                <p class="text-blue-100 text-sm mt-1">Sign in to your account</p>
             </div>
-            <div>
-                <label class="block text-sm text-slate-600 mb-1">Password</label>
-                <input type="password" name="password" required class="w-full rounded-lg border-slate-200">
+            
+            <div class="p-6">
+                <form method="POST" action="{{ route('login.store') }}" class="space-y-5">
+                    @csrf
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-slate-700">Email Address</label>
+                        <input type="email" name="email" value="{{ old('email') }}" required 
+                               class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3.5">
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-slate-700">Password</label>
+                        <input type="password" name="password" required 
+                               class="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3.5">
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input id="remember" type="checkbox" name="remember" 
+                                   class="w-4 h-4 text-blue-600 bg-slate-100 border-slate-300 rounded focus:ring-blue-500 focus:ring-2">
+                            <label for="remember" class="ml-2 text-sm text-slate-600">Remember me</label>
+                        </div>
+                        <a href="{{ route('register') }}" class="text-sm font-medium text-blue-600 hover:text-blue-700">Create account</a>
+                    </div>
+                    <button type="submit" 
+                            class="w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3.5 text-center transition duration-200">
+                        Sign In
+                    </button>
+                </form>
+                
+                
             </div>
-            <div class="flex items-center justify-between">
-                <label class="flex items-center gap-2 text-sm text-slate-600">
-                    <input type="checkbox" name="remember" class="rounded">
-                    Remember me
-                </label>
-                <a href="{{ route('register') }}" class="text-sm text-blue-600">Register</a>
-            </div>
-            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-2">Login</button>
-        </form>
+        </div>
     </div>
 @endsection

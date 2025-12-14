@@ -16,6 +16,7 @@ use App\Http\Controllers\User\ProfileController;
 use App\Http\Controllers\User\ReservationController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 Route::get('/', LandingController::class)->name('landing');
 
@@ -33,6 +34,12 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 
 Route::middleware(['auth'])->group(function () {
+    // Backward-compatible dashboard alias
+    Route::get('/home', function (Request $request) {
+        $user = $request->user();
+        return redirect()->route($user->isAdmin() ? 'admin.dashboard' : 'user.dashboard');
+    })->name('dashboard');
+
     // User Routes
     Route::prefix('dashboard')->name('user.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
