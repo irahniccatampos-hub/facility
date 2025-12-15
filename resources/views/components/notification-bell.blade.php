@@ -4,9 +4,10 @@
     $unreadCount = $user?->unreadNotifications()->count() ?? 0;
 @endphp
 
-<div class="relative" id="notif-bell" data-unread="{{ $unreadCount }}">
+<div class="relative" id="notif-bell" data-unread="{{ $unreadCount }}" aria-haspopup="true">
     <div role="button"
          tabindex="0"
+         aria-expanded="false"
          class="relative flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 text-white hover:bg-slate-700 transition cursor-pointer"
          data-notif-toggle>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -33,6 +34,7 @@
             </div>
         </div>
         <div class="max-h-80 overflow-y-auto divide-y divide-slate-100" id="notif-list">
+            <div id="notif-loading" class="hidden p-4 text-sm text-slate-500 text-center">Loading...</div>
             @forelse ($notifications as $notification)
                 @php($data = $notification->data ?? [])
                 <div role="button"

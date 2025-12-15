@@ -6,6 +6,11 @@ window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+const csrfToken = document.head.querySelector('meta[name="csrf-token"]');
+if (csrfToken) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken.content;
+}
+
 window.Pusher = Pusher;
 
 const currentUserMeta = document.head.querySelector('meta[name="user-id"]');
@@ -31,6 +36,9 @@ if (currentUserMeta && import.meta.env.VITE_PUSHER_APP_KEY) {
 
     window.Echo.private(`App.Models.User.${currentUserMeta.content}`)
         .notification((notification) => {
+            if (window.notificationBell?.refresh) {
+                window.notificationBell.refresh();
+            }
             if (window.Livewire) {
                 window.Livewire.dispatch('notification-received', { notification });
             }
