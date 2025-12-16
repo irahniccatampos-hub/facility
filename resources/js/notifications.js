@@ -85,9 +85,21 @@ const initNotificationBell = () => {
             item.appendChild(dot);
             item.appendChild(content);
 
+            const url = notification?.data?.meta?.url ?? null;
+
             const handleActivate = () => {
-                if (notification.read_at) return;
-                markNotificationRead(notification.id);
+                const goToMeta = () => {
+                    if (url) {
+                        window.location.href = url;
+                    }
+                };
+
+                if (notification.read_at) {
+                    goToMeta();
+                    return;
+                }
+
+                markNotificationRead(notification.id, goToMeta);
             };
 
             item.addEventListener('click', handleActivate);
@@ -116,13 +128,17 @@ const initNotificationBell = () => {
         }
     };
 
-    const markNotificationRead = async (id) => {
+    const markNotificationRead = async (id, onDone) => {
         if (!id) return;
         try {
             await window.axios.post(`/notifications/${id}/read`);
             await fetchNotifications();
         } catch (error) {
             console.error('Failed to mark notification as read', error);
+        } finally {
+            if (typeof onDone === 'function') {
+                onDone();
+            }
         }
     };
 

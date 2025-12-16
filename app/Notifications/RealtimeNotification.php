@@ -2,7 +2,6 @@
 
 namespace App\Notifications;
 
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\BroadcastMessage;
@@ -42,13 +41,6 @@ class RealtimeNotification extends Notification implements ShouldQueue
             'read_at' => null,
             'created_at' => now()->toIso8601String(),
         ]);
-    }
-
-    public function broadcastOn(object $notifiable): array
-    {
-        return [
-            new PrivateChannel('App.Models.User.' . $notifiable->id),
-        ];
     }
 
     public function broadcastType(): string

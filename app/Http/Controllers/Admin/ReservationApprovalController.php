@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Reservation;
 use App\Services\ReservationConflictService;
+use App\Services\ReservationNotificationService;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -13,8 +14,10 @@ use Illuminate\View\View;
 
 class ReservationApprovalController extends Controller
 {
-    public function __construct(private readonly ReservationConflictService $conflictService)
-    {
+    public function __construct(
+        private readonly ReservationConflictService $conflictService,
+        private readonly ReservationNotificationService $notificationService,
+    ) {
     }
 
     public function calendar(): View
@@ -51,6 +54,7 @@ class ReservationApprovalController extends Controller
         }
 
         $reservation->update(['status' => Reservation::STATUS_APPROVED]);
+        $this->notificationService->notifyUserOfDecision($reservation);
 
         return back()->with('status', 'Reservation approved.');
     }
@@ -68,6 +72,7 @@ class ReservationApprovalController extends Controller
             'status' => Reservation::STATUS_REJECTED,
             'reason' => $request->input('reason'),
         ]);
+        $this->notificationService->notifyUserOfDecision($reservation);
 
         return back()->with('status', 'Reservation rejected.');
     }

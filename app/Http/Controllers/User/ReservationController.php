@@ -7,6 +7,7 @@ use App\Http\Requests\StoreReservationRequest;
 use App\Models\Facility;
 use App\Models\Reservation;
 use App\Services\ReservationConflictService;
+use App\Services\ReservationNotificationService;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -15,8 +16,10 @@ use Illuminate\View\View;
 
 class ReservationController extends Controller
 {
-    public function __construct(private readonly ReservationConflictService $conflictService)
-    {
+    public function __construct(
+        private readonly ReservationConflictService $conflictService,
+        private readonly ReservationNotificationService $notificationService,
+    ) {
     }
 
     public function index(): View
@@ -66,7 +69,7 @@ class ReservationController extends Controller
             ])->withInput();
         }
 
-        Reservation::create([
+        $reservation = Reservation::create([
             'user_id' => Auth::id(),
             'facility_id' => $facility->id,
             'start_time' => $start,
@@ -74,6 +77,8 @@ class ReservationController extends Controller
             'status' => Reservation::STATUS_PENDING,
             'reason' => $data['reason'] ?? null,
         ]);
+
+        $this->notificationService->notifyAdminsOfNewReservation($reservation);
 
         return back()->with('status', 'Reservation submitted for approval.');
     }
